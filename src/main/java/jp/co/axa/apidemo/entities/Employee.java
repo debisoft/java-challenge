@@ -20,7 +20,39 @@ public class Employee {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Integer salary) {
+		this.salary = salary;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	@Getter
     @Setter
     @Column(name="EMPLOYEE_NAME")
     private String name;
@@ -34,5 +66,11 @@ public class Employee {
     @Setter
     @Column(name="DEPARTMENT")
     private String department;
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "[" + name + ", " + department + ", ¥" + salary + "]";
+	}
 
 }

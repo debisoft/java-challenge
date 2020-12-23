@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -23,9 +24,9 @@ public class EmployeeController {
         List<Employee> employees = employeeService.retrieveEmployees();
         return employees;
     }
-
+    
     @GetMapping("/employees/{employeeId}")
-    public Employee getEmployee(@PathVariable(name="employeeId")Long employeeId) {
+    public Optional<Employee> getEmployee(@PathVariable(name="employeeId")Long employeeId) {
         return employeeService.getEmployee(employeeId);
     }
 
@@ -44,7 +45,7 @@ public class EmployeeController {
     @PutMapping("/employees/{employeeId}")
     public void updateEmployee(@RequestBody Employee employee,
                                @PathVariable(name="employeeId")Long employeeId){
-        Employee emp = employeeService.getEmployee(employeeId);
+    	Optional<Employee> emp = employeeService.getEmployee(employeeId);
         if(emp != null){
             employeeService.updateEmployee(employee);
         }
