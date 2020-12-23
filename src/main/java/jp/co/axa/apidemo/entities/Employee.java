@@ -69,7 +69,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
+		// Useful for testing
 		return "[" + name + ", " + department + ", ¥" + salary + "]";
 	}
 
