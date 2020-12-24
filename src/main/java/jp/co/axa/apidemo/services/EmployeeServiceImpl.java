@@ -9,34 +9,34 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
-    public void setEmployeeRepository(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
+	public void setEmployeeRepository(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
+	}
 
-    public List<Employee> retrieveEmployees() {
-        List<Employee> employees = employeeRepository.findAll();
-        return employees;
-    }
+	public List<Employee> retrieveEmployees() {
+		List<Employee> employees = employeeRepository.findAll();
+		return employees;
+	}
 
-    public Optional<Employee> getEmployee(Long employeeId) {
-        Optional<Employee> optEmp = employeeRepository.findById(employeeId);
-        return optEmp;
-    }
+	public Optional<Employee> getEmployee(Long employeeId) {
+		Optional<Employee> optEmp = employeeRepository.findById(employeeId);
+		return optEmp;
+	}
 
-    public void saveEmployee(Employee employee){
-        employeeRepository.save(employee);
-    }
+	public void saveEmployee(Employee employee) {
+		employeeRepository.save(employee);
+	}
 
-    public void deleteEmployee(Long employeeId){
-        employeeRepository.deleteById(employeeId);
-    }
+	public void deleteEmployee(Long employeeId) {
+		employeeRepository.deleteById(employeeId);
+	}
 
-    public void updateEmployee(Employee employee) {
-        employeeRepository.save(employee);
-    }
+	public void updateEmployee(Employee employee) {
+		employeeRepository.save(employee);
+	}
 }

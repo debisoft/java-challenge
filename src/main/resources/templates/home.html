@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="https://www.thymeleaf.org"
-xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
->
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
 <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Welcome!</h1>
+	<h1>Welcome!</h1>
 
-<p>
-	<!-- Add functions here -->
-		Click <a href="/api/v1/employees">here</a> to see employees of AXA.
+	<p>
+		<!-- Add functions here -->
+	<ul>
+		<li>All Axa Employees: <a href="/api/v1/employees">click here</a></li>
+		<li>Swagger UI : <a href="/swagger-ui.html">click here</a></li>
+		<li>H2 UI : <a href="/h2-console">click here</a></li>
+	</ul>
 	</p>
 	<div sec:authorize="isAuthenticated()">
-	<form th:action="@{/logout}" method="post">
-	<input type="submit" value="logout" />
-</form>
-</div>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="logout" />
+		</form>
+	</div>
 </body>
 </html>

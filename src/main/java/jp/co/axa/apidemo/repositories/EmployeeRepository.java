@@ -16,14 +16,16 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.axa.apidemo.entities.Employee;
 
-@CacheConfig(cacheNames="employee")
+// Due to the lack of time, we will keep it simple.
+// Cache all reads, and evict the whole cache after any changes.
+@CacheConfig(cacheNames = "employee")
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee,Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	@Cacheable
 	Page<Employee> findAll(Pageable pageable);
 
-	@CachePut
+	@CacheEvict(allEntries = true)
 	<S extends Employee> S save(S entity);
 
 	@Cacheable
@@ -32,19 +34,19 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 	@Cacheable
 	boolean existsById(Long id);
 
-	// Don't cache
+	@Cacheable
 	long count();
 
-	@CacheEvict
+	@CacheEvict(allEntries = true)
 	void deleteById(Long id);
 
-	@CacheEvict
+	@CacheEvict(allEntries = true)
 	void delete(Employee entity);
 
-	@CacheEvict
+	@CacheEvict(allEntries = true)
 	void deleteAll(Iterable<? extends Employee> entities);
 
-	@CacheEvict(allEntries=true)
+	@CacheEvict(allEntries = true)
 	void deleteAll();
 
 	@Cacheable
@@ -53,7 +55,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 	@Cacheable
 	<S extends Employee> Page<S> findAll(Example<S> example, Pageable pageable);
 
-	// Don't cache
+	@Cacheable
 	<S extends Employee> long count(Example<S> example);
 
 	@Cacheable
@@ -68,19 +70,19 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 	@Cacheable
 	List<Employee> findAllById(Iterable<Long> ids);
 
-	@CachePut
+	@CacheEvict(allEntries = true)
 	<S extends Employee> List<S> saveAll(Iterable<S> entities);
 
-	@CacheEvict(allEntries=true)
+	@CacheEvict(allEntries = true)
 	void flush();
 
-	@CacheEvict(allEntries=true)
+	@CacheEvict(allEntries = true)
 	<S extends Employee> S saveAndFlush(S entity);
-	
+
 	@Cacheable
 	<S extends Employee> List<S> findAll(Example<S> example);
 
 	@Cacheable
 	<S extends Employee> List<S> findAll(Example<S> example, Sort sort);
-	
+
 }

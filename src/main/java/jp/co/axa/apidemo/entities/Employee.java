@@ -1,8 +1,5 @@
 package jp.co.axa.apidemo.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,17 +7,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-@Table(name="EMPLOYEE")
+@Table(name = "EMPLOYEE")
+@ApiModel(description = "Model Employee")
 public class Employee {
 
-    @Getter
-    @Setter
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+	@Getter
+	@Setter
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(notes = "Unique employee number", required = true)
+	private Long id;
 
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -28,6 +32,7 @@ public class Employee {
 		this.id = id;
 	}
 
+	@ApiModelProperty(notes = "Callsign")
 	public String getName() {
 		return name;
 	}
@@ -36,6 +41,7 @@ public class Employee {
 		this.name = name;
 	}
 
+	@ApiModelProperty(notes = "Salary in ¥")
 	public Integer getSalary() {
 		return salary;
 	}
@@ -44,6 +50,7 @@ public class Employee {
 		this.salary = salary;
 	}
 
+	@ApiModelProperty(notes = "The Great Divider")
 	public String getDepartment() {
 		return department;
 	}
@@ -53,19 +60,19 @@ public class Employee {
 	}
 
 	@Getter
-    @Setter
-    @Column(name="EMPLOYEE_NAME")
-    private String name;
+	@Setter
+	@Column(name = "EMPLOYEE_NAME")
+	private String name;
 
-    @Getter
-    @Setter
-    @Column(name="EMPLOYEE_SALARY")
-    private Integer salary;
+	@Getter
+	@Setter
+	@Column(name = "EMPLOYEE_SALARY")
+	private Integer salary;
 
-    @Getter
-    @Setter
-    @Column(name="DEPARTMENT")
-    private String department;
+	@Getter
+	@Setter
+	@Column(name = "DEPARTMENT")
+	private String department;
 
 	@Override
 	public String toString() {
